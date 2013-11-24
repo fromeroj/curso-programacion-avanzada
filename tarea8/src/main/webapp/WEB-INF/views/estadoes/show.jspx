@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_mx_unam_mcc_pa_Estado" object="${estado}" path="/estadoes" z="Uy7x4/aUVwfrPpEDOHOsgc8ECwg=">
+        <field:display field="pais" id="s_mx_unam_mcc_pa_Estado_pais" object="${estado}" z="YuuN2myVtFY2Nd1GtvAY2rPr0I4="/>
+        <field:display field="estado" id="s_mx_unam_mcc_pa_Estado_estado" object="${estado}" z="lk64i1UlbfrAKoGxFcH3FALJK20="/>
+    </page:show>
+</div>
