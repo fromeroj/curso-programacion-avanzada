@@ -24,7 +24,6 @@ public class Problema2 extends Configured implements Tool {
         FileInputFormat.setInputPaths(job, in);
         FileOutputFormat.setOutputPath(job, out);
         job.setMapperClass(IdMapper.class);
-        job.setCombinerClass(IdReducer.class);
         job.setReducerClass(IdReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);

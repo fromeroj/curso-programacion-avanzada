@@ -15,17 +15,11 @@ import org.apache.hadoop.mapreduce.*;
 import com.google.common.base.Joiner;
 
 public class IdReducer
-extends Reducer<Text, DoubleWritable, Text, DoubleWritable> {
+extends Reducer<Text, DoubleWritable, Text, Text> {
 	@Override
 	public void reduce(Text key, Iterable<DoubleWritable> values, Context context)
 			throws IOException, InterruptedException 
       {
-          double max = Double.MIN_VALUE;
-          for (DoubleWritable value : values) {
-              if (value.get() > max) {
-                  max = value.get();
-              }
-          }
-          context.write(key, new DoubleWritable(max));
+          context.write(key, new Text(Joiner.on(",").join(values)));
       }
 }

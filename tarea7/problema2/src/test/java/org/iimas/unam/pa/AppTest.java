@@ -22,7 +22,7 @@ public class AppTest
 extends TestCase
 {
 	MapDriver<LongWritable, Text, Text, DoubleWritable> mapDriver;
-	ReduceDriver<Text, DoubleWritable, Text, DoubleWritable> reduceDriver;
+	ReduceDriver<Text, DoubleWritable, Text, Text> reduceDriver;
 	/**
 	 * Create the test case
 	 *
@@ -74,7 +74,7 @@ extends TestCase
 		values.add(new DoubleWritable(2.1));
 		// max Temperatura
 		reduceDriver.withInput(llave, values);
-		reduceDriver.withOutput(llave, new DoubleWritable(2.1));
+		reduceDriver.withOutput(llave, new Text("2.1"));
 		reduceDriver.runTest();
 	}
 
