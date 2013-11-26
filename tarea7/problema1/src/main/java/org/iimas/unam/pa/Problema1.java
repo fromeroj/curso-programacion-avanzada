@@ -1,4 +1,4 @@
-package org.iimas.unam.pa.tarea6;
+package org.iimas.unam.pa;
 
 import java.io.IOException;
 
