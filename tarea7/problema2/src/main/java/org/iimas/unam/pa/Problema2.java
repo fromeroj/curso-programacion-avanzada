@@ -1,4 +1,4 @@
-package org.iimas.unam.pa.tarea6;
+package org.iimas.unam.pa;
 
 import java.io.IOException;
 
@@ -23,9 +23,9 @@ public class Problema2 extends Configured implements Tool {
         job.setJarByClass(Problema2.class);
         FileInputFormat.setInputPaths(job, in);
         FileOutputFormat.setOutputPath(job, out);
-        job.setMapperClass(MaximoMapper.class);
-        job.setCombinerClass(MaximoReducer.class);
-        job.setReducerClass(MaximoReducer.class);
+        job.setMapperClass(IdMapper.class);
+        job.setCombinerClass(IdReducer.class);
+        job.setReducerClass(IdReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
         job.setOutputKeyClass(Text.class);

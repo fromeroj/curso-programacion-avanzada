@@ -1,4 +1,4 @@
-package org.iimas.unam.pa.tarea6;
+package org.iimas.unam.pa;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,10 +31,10 @@ extends TestCase
 	public AppTest( String testName )
 	{
 		super( testName );
-		MaximoMapper mapper  = new MaximoMapper();
+		IdMapper mapper  = new IdMapper();
 		mapDriver = MapDriver.newMapDriver(mapper);
 
-		MaximoReducer reducer = new MaximoReducer();
+		IdReducer reducer = new IdReducer();
 		reduceDriver = ReduceDriver.newReduceDriver(reducer);
 	}
 
@@ -82,13 +82,13 @@ extends TestCase
 		Configuration conf = new Configuration();
 		conf.set("fs.default.name", "file:///");
 		conf.set("mapred.job.tracker", "local");
-		Path input = new Path("./datos_cols.csv");
+		Path input = new Path("./datos_grupo.csv");
 		Path output = new Path("salida");
 
 		FileSystem fs = FileSystem.getLocal(conf);
 		fs.delete(output, true); // borra el directorio de salida
 
-		Problema1 driver = new Problema1();
+		Problema2 driver = new Problema2();
 		driver.setConf(conf);
 		int exitCode = driver.run(new String[] {
 				input.toString(), output.toString() });
