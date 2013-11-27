@@ -21,8 +21,8 @@ import junit.framework.TestSuite;
 public class AppTest 
 extends TestCase
 {
-	MapDriver<LongWritable, Text, Text, Text> mapDriver;
-	ReduceDriver<Text, Text, Text, Text> reduceDriver;
+	MapDriver<LongWritable, Text, Text, DoubleWritable> mapDriver;
+	ReduceDriver<Text, DoubleWritable, Text, DoubleWritable> reduceDriver;
 	/**
 	 * Create the test case
 	 *
@@ -31,10 +31,10 @@ extends TestCase
 	public AppTest( String testName )
 	{
 		super( testName );
-		FrecMapper mapper  = new FrecMapper();
+		PuntosMapper mapper  = new PuntosMapper();
 		mapDriver = MapDriver.newMapDriver(mapper);
 
-		FrecReducer reducer = new FrecReducer();
+		PuntosReducer reducer = new PuntosReducer();
 		reduceDriver = ReduceDriver.newReduceDriver(reducer);
 	}
 
@@ -57,23 +57,24 @@ extends TestCase
 	public void testMapper() throws IOException, InterruptedException {
 		long llave = 1;
 		double valor = 2.13;
-		Text texto = new Text("uno");
+		Text texto = new Text("436650.1494750933,853230.9443486946,605966.3543574564,325617.7004387456,684831.1360391678");
+
 		mapDriver.withInput(new LongWritable(llave), texto);
-		mapDriver.withOutput(new Text("uno"), new Text("uno"));
+		mapDriver.withOutput(new Text("max"), new DoubleWritable(605966.3543574564));
 		mapDriver.runTest();
 	}
 
 
 	public void testReducer () throws IOException,
 	InterruptedException {
-		Text llave = new Text("uno");
-		List<Text> values = new ArrayList<Text>();
-		values.add(new Text("uno"));
-		values.add(new Text("uno"));
-		values.add(new Text("uno"));
+		Text llave = new Text("max");
+		List<DoubleWritable> values = new ArrayList<DoubleWritable>();
+		values.add(new DoubleWritable(1.2));
+		values.add(new DoubleWritable(1.7));
+		values.add(new DoubleWritable(2.1));
 		// max Temperatura
 		reduceDriver.withInput(llave, values);
-		reduceDriver.withOutput(llave, new Text("3"));
+		reduceDriver.withOutput(llave, new DoubleWritable(2.1));
 		reduceDriver.runTest();
 	}
 
@@ -81,13 +82,13 @@ extends TestCase
 		Configuration conf = new Configuration();
 		conf.set("fs.default.name", "file:///");
 		conf.set("mapred.job.tracker", "local");
-		Path input = new Path("./datos_texto.csv");
+		Path input = new Path("./datos_grafica.csv");
 		Path output = new Path("salida");
 
 		FileSystem fs = FileSystem.getLocal(conf);
 		fs.delete(output, true); // borra el directorio de salida
 
-		Problema3 driver = new Problema3();
+		Problema4 driver = new Problema4();
 		driver.setConf(conf);
 		int exitCode = driver.run(new String[] {
 				input.toString(), output.toString() });

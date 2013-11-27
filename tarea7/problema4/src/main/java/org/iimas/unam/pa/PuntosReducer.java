@@ -15,19 +15,19 @@ import org.apache.hadoop.mapreduce.*;
 
 import com.google.common.base.Joiner;
 
-public class FrecReducer
-extends Reducer<Text, Text, Text, Text> {
+public class PuntosReducer
+extends Reducer<Text, DoubleWritable, Text, DoubleWritable> {
 	@Override
-	public void reduce(Text key, Iterable<Text> values, Context context)
+	public void reduce(Text key, Iterable<DoubleWritable> values, Context context)
 			throws IOException, InterruptedException 
       {
-          System.out.println(values.getClass());
-          int c=0;
-          Iterator itr=values.iterator();
-          while(itr.hasNext()){
-              c++;
-              itr.next();
+          double avg = 0;
+          double count=0;
+          for (DoubleWritable value : values) {
+              avg+=value.get();
+              count++;
           }
-          context.write(key, new Text(Integer.toString(c)));
+          if(count>0)avg=avg/count;
+          context.write(key, new DoubleWritable(avg));
       }
 }

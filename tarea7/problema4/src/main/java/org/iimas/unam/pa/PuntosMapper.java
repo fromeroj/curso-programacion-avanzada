@@ -4,15 +4,17 @@ import java.io.IOException;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class FrecMapper
-    extends Mapper<LongWritable, Text, Text, Text> {
+
+public class PuntosMapper
+    extends Mapper<LongWritable, Text, Text, DoubleWritable> {
     protected void map(LongWritable key, Text linea, Context context)
         throws IOException, InterruptedException 
         {
             String[] datos = linea.toString().split (",");
-            for(int i=0;i<datos.length;i++){
-                context.write(new Text (datos[i]),
-                              new Text (datos[i]));
+            try{ 
+                context.write(new Text (datos[1]),
+                              new DoubleWritable(Double.parseDouble(datos[3])));
+            }catch(NumberFormatException nfe){
             }
         }
 }

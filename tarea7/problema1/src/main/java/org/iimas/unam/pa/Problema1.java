@@ -24,7 +24,6 @@ public class Problema1 extends Configured implements Tool {
         FileInputFormat.setInputPaths(job, in);
         FileOutputFormat.setOutputPath(job, out);
         job.setMapperClass(MaximoMapper.class);
-        job.setCombinerClass(MaximoReducer.class);
         job.setReducerClass(MaximoReducer.class);
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
