@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ap.tareas</groupId>
-  <artifactId>tarea5_problema3</artifactId>
+  <artifactId>tarea5_problema2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>tarea5_problema3</name>
+  <name>tarea5_problema2</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -21,10 +21,10 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-<dependency>
-	<groupId>commons-collections</groupId>
-	<artifactId>commons-collections</artifactId>
-	<version>3.2.1</version>
-</dependency>
+    <dependency>
+    	<groupId>commons-collections</groupId>
+    	<artifactId>commons-collections</artifactId>
+    	<version>3.2.1</version>
+    </dependency>
   </dependencies>
 </project>

@@ -19,15 +19,12 @@ import java.util.List
 
 class Tablero{
     @Property List<Robot> robots
-
     new(){
         this.robots=new ArrayList<Robot>()
     }
-
     def libre(Coordenada c){
         !this.robots.exists[ it.posicion == c ]
     }
-
 }
 
 class Robot{
